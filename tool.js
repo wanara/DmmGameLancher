@@ -10,9 +10,9 @@ class DmmGameBound {
 }
 
 class DmmGame {
-    constructor(name, simpleName, url, url_x, bound, defaultSetting = {}) {
+    constructor(name, name_x, url, url_x, bound, defaultSetting = {}) {
         this.name = name;
-        this.simpleName = simpleName;
+        this.name_x = name_x;
         this.url = url;
         this.url_x = url_x;
         this.bound = bound;
@@ -21,7 +21,24 @@ class DmmGame {
         this.defaultSetting.enable = defaultSetting.enable == false ? false : true;
         this.defaultSetting.useR18 = defaultSetting.useR18 == false ? false : true;
         this.defaultSetting.muted = defaultSetting.muted == true ? true : false;
-        this.defaultSetting.icon = defaultSetting.icon || "empty.png";
+		this.defaultSetting.gameId = defaultSetting.gameId || "";
+		this.defaultSetting.gameIdR18 = defaultSetting.gameIdR18 || "";
+		this.dmmIconDefault = "http://pics.dmm.com/freegame/app/";
+		if(this.defaultSetting.useR18 && (this.defaultSetting.gameId || this.defaultSetting.gameIdR18)){
+			if(this.defaultSetting.gameIdR18){
+				this.defaultSetting.icon = this.dmmIconDefault + this.defaultSetting.gameIdR18 + "/200.gif";
+			}else{
+				this.defaultSetting.icon = this.dmmIconDefault + this.defaultSetting.gameId + "/200.gif";
+			}
+		}else if(!this.defaultSetting.useR18 && this.defaultSetting.gameId){
+			this.defaultSetting.icon = this.dmmIconDefault + this.defaultSetting.gameId + "/200.gif";
+		}else{
+			this.defaultSetting.icon = defaultSetting.icon || "icon/empty.png";
+		}
+		
+		if(this.defaultSetting.useR18){
+			this.name = this.name_x;
+		}
 
         this.windowKey = "window_" + name;
         this.mutedKey = "muted_" + name;
@@ -129,7 +146,7 @@ class DmmGameHandler {
     }
 
     static screenShot(game) {
-        var filename = "DmmGameLancher_ScreenShot/" + game.simpleName + "/" +
+        var filename = "DmmGameLancher_ScreenShot/" + game.name + "/" +
             (() => {
                 var d = new Date();
 

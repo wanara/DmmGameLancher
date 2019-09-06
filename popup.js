@@ -16,8 +16,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 chrome.runtime.getBackgroundPage(backgroundPage => {
 	var body = $(document.body);
-    var itemArray = backgroundPage.dmmGameArray.filter(game => game.defaultSetting.enable).map(game =>
-        $(`<div class='game ${game.simpleName}'></div>`)
+    var itemArray = backgroundPage.dmmGameArray.filter(game => game.defaultSetting.enable).map(game => 
+        $(`<div class='game'></div>`)
         .append("<img class='icon' src='" + game.defaultSetting.icon + "'></img>")
         .append(
             $("<div></div>")

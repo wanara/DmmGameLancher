@@ -10,6 +10,7 @@ body {
 .game {
     display: grid;
     grid-template-columns: 60px 1fr;
+	height: 52px;
 }
 
 .game:hover {
@@ -19,12 +20,15 @@ body {
 .game .icon {
     display: block;
     margin: auto auto;
+	width: 50px;
+	margin: 2px 0px 0px 2px;
 }
 
 .game .name {
     margin: 0 0 0 0;
-    font-size: 18px;
+    font-size: 16px;
     color: black;
     text-decoration: none;
-    font-weight: normal;
+    font-weight: bold;
+	font-family : "Yu Gothic", "游ゴシック", "游ゴシック体", "Noto Sans Japanese", "ヒラギノ角ゴ Pro W3", "メイリオ", "Hiragino Kaku Gothic ProN", "MS PGothic", "sans-serif";
 }
